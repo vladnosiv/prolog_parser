@@ -15,6 +15,14 @@ defmodule PrologParserTest do
     assert PrologParser.check_syntax(":- f.") == :error
     assert PrologParser.check_syntax("f :- g; h, .") == :error
     assert PrologParser.check_syntax("f :- (g; (f).") == :error
-   end
+  end
+
+  test "correct def with whitespaces" do
+    assert PrologParser.check_syntax("f    :-       d  ;     r ,        ttweAs     .")
+  end
+
+  test "incorrect def with whitespaces" do
+    assert PrologParser.check_syntax("   f :-     rAx , ( dsd ,   .")
+  end
 
 end
