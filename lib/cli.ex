@@ -7,8 +7,7 @@ defmodule PrologParser.CLI do
   end
 
   defp print_help_message() do
-    IO.puts "Usage: prolog_parser -f [file]   check syntax in text file
-"
+    IO.puts "Usage: prolog_parser -f [file]   check syntax in text file"
   end
 
   defp file_mode(filename) do
