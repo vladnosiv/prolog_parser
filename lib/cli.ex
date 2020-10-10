@@ -12,7 +12,11 @@ defmodule PrologParser.CLI do
 
   defp file_mode(filename) do
     {:ok, body} = File.read(filename)
-    PrologParser.check_syntax(body)
+    result = PrologParser.parse(body)
+    {:ok, file} = File.open(filename <> ".out", [:write])
+    for x <- result do
+      IO.write(file, x ++ '\n')
+    end
   end
 
   defp handle_args(arg) do
