@@ -14,8 +14,12 @@ defmodule PrologParser.CLI do
     {:ok, body} = File.read(filename)
     result = PrologParser.parse(body)
     {:ok, file} = File.open(filename <> ".out", [:write])
-    for x <- result do
-      IO.write(file, x ++ '\n')
+    try do
+      for x <- result do
+        IO.write(file, x ++ '\n')
+      end
+    rescue
+      _ -> IO.write(file, "Incorrect prolog definition.\n")
     end
   end
 
